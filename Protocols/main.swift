@@ -252,3 +252,21 @@ extension Array: TextRepresentable where Element: TextRepresentable {
 let myDice = [d6, d12]
 print(myDice.textualDescription)
 // Prints "[A 6-sided dice, A 12-sided dice]"
+
+
+//MARK: Принятие протокола через расширение
+print("\n//Принятие протокола через расширение")
+
+struct Hamster {
+    var name: String
+    var textualDescription: String {
+        return "A hamster named \(name)"
+    }
+}
+extension Hamster: TextRepresentable {}
+
+let simonTheHamster = Hamster(name: "Simon")
+let somethingTextRepresentable: TextRepresentable = simonTheHamster
+print(simonTheHamster.textualDescription)
+print(somethingTextRepresentable.textualDescription)
+// Prints "A hamster named Simon"

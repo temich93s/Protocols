@@ -270,3 +270,35 @@ let somethingTextRepresentable: TextRepresentable = simonTheHamster
 print(simonTheHamster.textualDescription)
 print(somethingTextRepresentable.textualDescription)
 // Prints "A hamster named Simon"
+
+
+//MARK: Принятие протокола через синтезированную реализацию
+print("\n//Принятие протокола через синтезированную реализацию")
+
+struct Vector3D: Equatable {
+    var x = 0.0, y = 0.0, z = 0.0
+}
+
+let twoThreeFour = Vector3D(x: 2.0, y: 3.0, z: 4.0)
+let anotherTwoThreeFour = Vector3D(x: 2.0, y: 3.0, z: 4.0)
+if twoThreeFour == anotherTwoThreeFour {
+    print("Эти два вектора эквивалентны.")
+}
+// Выведет "Эти два вектора эквивалентны."
+
+extension Vector3D: Hashable {}
+
+enum SkillLevel: Comparable {
+    case beginner
+    case intermediate
+    case expert(stars: Int)
+}
+var levels = [SkillLevel.intermediate, SkillLevel.beginner,
+              SkillLevel.expert(stars: 5), SkillLevel.expert(stars: 3)]
+for level in levels.sorted() {
+    print(level)
+}
+// Выведет "beginner"
+// Выведет "intermediate"
+// Выведет "expert(stars: 3)"
+// Выведет "expert(stars: 5)"

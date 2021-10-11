@@ -88,3 +88,22 @@ print(lightSwitch)
 lightSwitch.toggle()
 print(lightSwitch)
 // lightSwitch is now equal to .on
+
+
+//MARK: Реализация класса соответствующего протоколу с требованием инициализатора
+print("\n//Реализация класса соответствующего протоколу с требованием инициализатора")
+
+protocol SomeProtocol1 {
+    var a: Int { get set }
+    init(a: Int)
+}
+
+struct a1: SomeProtocol1 {
+    var a: Int
+    init(a: Int) {
+        self.a = a
+    }
+}
+
+var a2 = a1(a: 3)
+print(a2)

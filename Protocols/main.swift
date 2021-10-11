@@ -317,3 +317,31 @@ for thing in things {
 // Хомяка назвали Фруша
 
 
+//MARK: Наследование протокола
+print("\n//Наследование протокола")
+
+protocol PrettyTextRepresentable: TextRepresentable {
+    var prettyTextualDescription: String { get }
+}
+
+extension SnakesAndLadders: PrettyTextRepresentable {
+    var prettyTextualDescription: String {
+        var output = textualDescription + ":\n"
+        for index in 1...finalSquare {
+            switch board[index] {
+            case let ladder where ladder > 0:
+                output += "▲ "
+            case let snake where snake < 0:
+                output += "▼ "
+            default:
+                output += "○ "
+            }
+        }
+        return output
+    }
+}
+
+print(game.prettyTextualDescription)
+// Игра Змеи и Лестницы с полем в 25 клеток:
+// ○ ○ ▲ ○ ○ ▲ ○ ○ ▲ ▲ ○ ○ ○ ▼ ○ ○ ○ ○ ▼ ○ ○ ▼ ○ ▼ ○
+

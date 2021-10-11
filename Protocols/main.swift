@@ -236,3 +236,19 @@ extension SnakesAndLadders: TextRepresentable {
 }
 print(game.textualDescription)
 // Prints "A game of Snakes and Ladders with 25 squares"
+
+
+//MARK: Условное соответствие протоколу
+print("\n//Условное соответствие протоколу")
+
+extension Array: TextRepresentable where Element: TextRepresentable {
+    var textualDescription: String {
+        //.map применяет к каждому элементу массива функцию в {}
+        let itemsAsText = self.map { $0.textualDescription }
+        return "[" + itemsAsText.joined(separator: ", ") + "]"
+    }
+}
+
+let myDice = [d6, d12]
+print(myDice.textualDescription)
+// Prints "[A 6-sided dice, A 12-sided dice]"

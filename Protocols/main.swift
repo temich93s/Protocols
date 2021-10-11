@@ -210,3 +210,29 @@ game.play()
 // Rolled a 4
 // Rolled a 5
 // The game lasted for 4 turns
+
+
+//MARK: Добавление реализации протокола через расширение
+print("\n//Добавление реализации протокола через расширение")
+
+protocol TextRepresentable {
+    var textualDescription: String { get }
+}
+
+extension Dice: TextRepresentable {
+    var textualDescription: String {
+        return "A \(sides)-sided dice"
+    }
+}
+
+let d12 = Dice(sides: 12, generator: LinearCongruentialGenerator())
+print(d12.textualDescription)
+// Prints "A 12-sided dice"
+
+extension SnakesAndLadders: TextRepresentable {
+    var textualDescription: String {
+        return "A game of Snakes and Ladders with \(finalSquare) squares"
+    }
+}
+print(game.textualDescription)
+// Prints "A game of Snakes and Ladders with 25 squares"

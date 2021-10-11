@@ -302,3 +302,18 @@ for level in levels.sorted() {
 // Выведет "intermediate"
 // Выведет "expert(stars: 3)"
 // Выведет "expert(stars: 5)"
+
+
+//MARK: Коллекции типов протокола
+print("\n//Коллекции типов протокола")
+
+let things: [TextRepresentable] = [game, d12, simonTheHamster]
+
+for thing in things {
+    print(thing.textualDescription)
+}
+// Игра Змеи и Лестницы с полем в 25 клеток
+// Игральная кость с 12 гранями
+// Хомяка назвали Фруша
+
+

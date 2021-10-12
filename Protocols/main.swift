@@ -58,6 +58,7 @@ class LinearCongruentialGenerator: RandomNumberGenerator {
         return lastRandom / m
     }
 }
+
 let generator = LinearCongruentialGenerator()
 print("Here's a random number: \(generator.random())")
 // Prints "Here's a random number: 0.3746499199817101"
@@ -497,3 +498,68 @@ for _ in 1...5 {
 // -1
 // 0
 // 0
+
+
+//MARK: Расширения протоколов
+print("\n//Расширения протоколов")
+
+protocol RandomNumberGenerator1 {
+    func random() -> Double
+}
+
+extension RandomNumberGenerator1 {
+    func randomBool() -> Bool {
+        return random() > 0.5
+    }
+}
+
+class LinearCongruentialGenerator1: RandomNumberGenerator1 {
+    var lastRandom = 42.0
+    let m = 139968.0
+    let a = 3877.0
+    let c = 29573.0
+    func random() -> Double {
+        lastRandom = ((lastRandom * a + c)
+            .truncatingRemainder(dividingBy:m))
+        return lastRandom / m
+    }
+}
+
+let generator1 = LinearCongruentialGenerator1()
+print("Рандомное число: \(generator1.random())")
+// Выведет "Рандомное число: 0.37464991998171"
+print("Рандомное логическое значение: \(generator1.randomBool())")
+// Выведет "Рандомное логическое значение: true"
+
+
+//MARK: Обеспечение реализации по умолчанию (дефолтной реализации)
+print("\n//Обеспечение реализации по умолчанию (дефолтной реализации)")
+
+protocol TextRepresentable1 {
+    var textualDescription: String { get }
+}
+
+protocol PrettyTextRepresentable1: TextRepresentable1 {
+    var prettyTextualDescription: String { get }
+}
+
+extension PrettyTextRepresentable1  {
+    var prettyTextualDescription: String {
+        return textualDescription
+    }
+}
+
+struct aa: PrettyTextRepresentable1 {
+    var textualDescription = "textualDescription"
+}
+
+struct bb: PrettyTextRepresentable1 {
+    var textualDescription = "textualDescription"
+    var prettyTextualDescription = "prettyTextualDescription"
+}
+
+var aa1 = aa()
+print(aa1.prettyTextualDescription)
+
+var bb1 = bb()
+print(bb1.prettyTextualDescription)

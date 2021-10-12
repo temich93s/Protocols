@@ -563,3 +563,26 @@ print(aa1.prettyTextualDescription)
 
 var bb1 = bb()
 print(bb1.prettyTextualDescription)
+
+
+//MARK: Добавление ограничений к расширениям протоколов
+print("\n//Добавление ограничений к расширениям протоколов")
+
+extension Collection where Element: Equatable {
+    func allEqual() -> Bool {
+        for element in self {
+            if element != self.first {
+                return false
+            }
+        }
+        return true
+    }
+}
+
+let equalNumbers = [100, 100, 100, 100, 100]
+let differentNumbers = [100, 100, 200, 100, 200]
+
+print(equalNumbers.allEqual())
+// Prints "true"
+print(differentNumbers.allEqual())
+// Prints "false"
